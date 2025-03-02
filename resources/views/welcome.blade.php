@@ -32,7 +32,7 @@
                         @else
                             <a href="{{ route('login') }}"
                                 class="px-5 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
-                                Log in
+                                Masuk
                             </a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
