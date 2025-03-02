@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -12,9 +13,11 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * The name of the factory's corresponding model.
+     *
+     * @var string
      */
-    protected static ?string $password;
+    protected $model = User::class;
 
     /**
      * Define the model's default state.
@@ -23,22 +26,42 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+        // Daftar program studi yang valid
+        $studyPrograms = [
+            'Ilmu Komunikasi',
+            'Ilmu Administrasi Publik',
+            'Pendidikan Bahasa Inggris',
+            'Bimbingan dan Konseling',
+            'Pendidikan Kimia',
+            'Pendidikan Olah Raga',
+            'Manajemen',
+            'Peternakan',
+            'Agribisnis',
+            'Hukum Ekonomi Syari’ah',
+            'Ekonomi Syari’ah',
+            'Pendidikan Guru Madrasah Ibtidaiyah',
+            'Teknik Mesin',
+            'Teknik Sipil',
+            'Teknik Elektro',
+            'Teknik Industri',
+            'Kesehatan Masyarakat',
+            'Ilmu Hukum',
+            'Teknik Informatika',
+            'Sistem Informasi',
+            'Farmasi',
         ];
-    }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        return [
+            'name' => $this->faker->name(),
+            'nim' => $this->faker->unique()->numerify('22########'),
+            'study_program' => $this->faker->randomElement($studyPrograms),
+            'role' => $this->faker->randomElement(['admin', 'student']),
+            'phone' => $this->faker->unique()->numerify('08##########'),
+            'is_approved' => $this->faker->boolean(0),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
     }
 }
