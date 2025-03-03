@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         $user = Auth::user();
 
-        if ($user->role === 'student' && !$user->is_approved) {
+        if ($user->role === 'mahasiswa' && !$user->is_approved) {
             Auth::logout();
             return redirect()->route('not_approved');
         }
