@@ -31,20 +31,22 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'nim' => ['required', 'string', 'max:10', 'unique:' . User::class],
+            'study_program' => ['required', 'string'],
+            'phone' => ['required', 'string'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'nim' => $request->nim,
+            'study_program' => $request->study_program,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('login', absolute: false))->with('status', 'Akun berhasil didaftarkan! Harap tunggu verifikasi dari admin sebelum bisa masuk.');
     }
 }

@@ -19,7 +19,7 @@
 <body
     class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-6">
     <div class="w-full max-w-4xl flex flex-col items-center text-center space-y-6">
-        <x-application-logo class="w-24 h-24 fill-current text-gray-500" />
+        <img src="{{ asset('images/uniska_logo.png') }}" alt="uniska_logo" class="w-32 h-32 mx-auto">
         <div class="w-full max-w-2xl">
             <header class="mb-8">
                 @if (Route::has('login'))
@@ -37,7 +37,7 @@
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
                                     class="px-5 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition-all">
-                                    Register
+                                    Registrasi
                                 </a>
                             @endif
                         @endauth
