@@ -1,9 +1,19 @@
 <x-app-layout>
+
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Prestasi') }}
-        </h2>
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Daftar Prestasi
+            </h2>
+            @if (Auth::user()->role === 'mahasiswa')
+                <a href="{{ route('achievements.create') }}"
+                    class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded text-center">
+                    Tambahkan Prestasi
+                </a>
+            @endif
+        </div>
     </x-slot>
+
     <div class="py-6">
         <div class="mx-auto sm:px-6 lg:px-8">
             @if (Auth::user()->role === 'admin')
@@ -34,15 +44,6 @@
                         {{ session('success') }}
                     </div>
                 @endif
-
-                <div class="my-4">
-                    @if (Auth::user()->role === 'mahasiswa')
-                        <a href="{{ route('achievements.create') }}"
-                            class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded w-full block text-center">
-                            Tambahkan Prestasi
-                        </a>
-                    @endif
-                </div>
 
                 <!-- Tabel Prestasi -->
                 <div class="overflow-x-auto">
