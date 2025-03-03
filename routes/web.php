@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,11 @@ Route::middleware('auth')->group(function () {
     //  ? User
     Route::resource('users', UserController::class);
     Route::post('/user/{id}/verify', [UserController::class, 'verify'])->name('user.verify');
+
+    // ? Achievement
+    Route::resource('achievements', AchievementController::class)->middleware('auth');
+    Route::patch('/achievements/{id}/update-status', [AchievementController::class, 'updateStatus'])->name('achievements.updateStatus');
+    
 });
 
 require __DIR__ . '/auth.php';

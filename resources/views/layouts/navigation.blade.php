@@ -13,9 +13,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Beranda
                     </x-nav-link>
-                    {{-- <x-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
+                    <x-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
                         Data Prestasi
-                    </x-nav-link> --}}
+                    </x-nav-link>
                     @if (Auth::user()->role === 'admin')
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                             Data Akun
