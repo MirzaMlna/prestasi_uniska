@@ -139,11 +139,6 @@ class AchievementController extends Controller
         return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil ditambahkan!');
     }
 
-    public function print()
-    {
-        return view('achievement.print');
-    }
-
     /**
      * Display the specified resource.
      */
@@ -192,5 +187,25 @@ class AchievementController extends Controller
         $achievement->save();
 
         return redirect()->route('achievements.index')->with('success', 'Status prestasi berhasil diperbarui.');
+    }
+
+    public function print(Request $request)
+    {
+        $studyProgram = $request->input('study_program');
+        $startYear = $request->input('start_year');
+
+        $achievements = Achievement::query()
+            ->when($studyProgram, function ($query, $studyProgram) {
+                return $query->where('study_program', $studyProgram);
+            })
+            ->when($startYear, function ($query, $startYear) {
+                return $query->whereYear('start_date', $startYear);
+            })
+            ->get();
+
+        // Debug data
+        dd($achievements, $studyProgram, $startYear);
+
+        return view('achievement.print', compact('achievements', 'studyProgram', 'startYear'));
     }
 }

@@ -1,47 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Prestasi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cetak Prestasi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 p-6">
-    <div class="mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-center mb-6">Laporan Prestasi Mahasiswa</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border border-gray-300 px-4 py-2">No</th>
-                        <th class="border border-gray-300 px-4 py-2">NIM</th>
-                        <th class="border border-gray-300 px-4 py-2">Nama</th>
-                        <th class="border border-gray-300 px-4 py-2">Prodi</th>
-                        <th class="border border-gray-300 px-4 py-2">Jenis Prestasi</th>
-                        <th class="border border-gray-300 px-4 py-2">Tingkat Prestasi</th>
-                        <th class="border border-gray-300 px-4 py-2">Capaian</th>
-                        <th class="border border-gray-300 px-4 py-2">Tanggal Kegiatan</th>
-                        <th class="border border-gray-300 px-4 py-2">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border border-gray-300 px-4 py-2 text-center">1</td>
-                        <td class="border border-gray-300 px-4 py-2">NIM</td>
-                        <td class="border border-gray-300 px-4 py-2">Name</td>
-                        <td class="border border-gray-300 px-4 py-2">S</td>
-                        <td class="border border-gray-300 px-4 py-2">S</td>
-                        <td class="border border-gray-300 px-4 py-2">s</td>
-                        <td class="border border-gray-300 px-4 py-2">s</td>
-                        <td class="border border-gray-300 px-4 py-2">S</td>
-                        <td class="border border-gray-300 px-4 py-2 text-center">S</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<body>
+    <div class="header">
+        <h1>Laporan Prestasi Mahasiswa</h1>
+        <p>Program Studi: {{ $studyProgram ?? 'Semua Program Studi' }}</p>
+        <p>Tahun Mulai: {{ $startYear ?? 'Semua Tahun' }}</p>
     </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Program Studi</th>
+                <th>Jenis Prestasi</th>
+                <th>Tingkat Prestasi</th>
+                <th>Capaian Prestasi</th>
+                <th>Tanggal Kegiatan</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($achievements as $key => $achievement)
+                <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>{{ $achievement->nim }}</td>
+                    <td>{{ $achievement->name }}</td>
+                    <td>{{ $achievement->study_program }}</td>
+                    <td>{{ ucfirst($achievement->achievement_type) }}</td>
+                    <td>{{ $achievement->achievement_level }}</td>
+                    <td>{{ $achievement->achievement_title }}</td>
+                    <td>
+                        {{ \Carbon\Carbon::parse($achievement->start_date)->translatedFormat('d F Y') }} <br>
+                        s/d <br>
+                        {{ \Carbon\Carbon::parse($achievement->end_date)->translatedFormat('d F Y') }}
+                    </td>
+                    <td>{{ ucfirst($achievement->status) }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="9" class="text-center">Tidak ada data prestasi.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
+
 </body>
 
 </html>

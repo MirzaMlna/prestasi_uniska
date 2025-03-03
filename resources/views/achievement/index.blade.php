@@ -11,6 +11,37 @@
                     Tambahkan Prestasi
                 </a>
             @endif
+            @if (Auth::user()->role === 'admin')
+                <!-- Form Filter untuk Cetak -->
+                <form action="{{ route('achievements.print') }}" method="GET" class="mb-6">
+                    <div class="flex space-x-4">
+                        <!-- Filter Program Studi -->
+                        <div class="flex-1">
+                            <label for="study_program" class="block text-sm font-medium text-gray-700">Program
+                                Studi</label>
+                            <input type="text" name="study_program" id="study_program"
+                                value="{{ request('study_program') }}" class="w-full px-2 py-1 border rounded"
+                                placeholder="Masukkan Program Studi">
+                        </div>
+
+                        <!-- Filter Tahun Mulai -->
+                        <div class="flex-1">
+                            <label for="start_year" class="block text-sm font-medium text-gray-700">Tahun Mulai</label>
+                            <input type="number" name="start_year" id="start_year" value="{{ request('start_year') }}"
+                                class="w-full px-2 py-1 border rounded" placeholder="Masukkan Tahun Mulai"
+                                min="2000" max="{{ date('Y') }}">
+                        </div>
+
+                        <!-- Tombol Cetak -->
+                        <div class="flex items-end">
+                            <button type="submit"
+                                class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
+                                Cetak
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            @endif
         </div>
     </x-slot>
 

@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     // ? Achievement
     Route::resource('achievements', AchievementController::class)->middleware('auth');
     Route::patch('/achievements/{id}/update-status', [AchievementController::class, 'updateStatus'])->name('achievements.updateStatus');
-    
+    Route::get('/achievements/print', [AchievementController::class, 'print'])->name('achievements.print');
 });
 
 require __DIR__ . '/auth.php';
