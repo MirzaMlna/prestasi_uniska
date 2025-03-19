@@ -12,24 +12,23 @@ class AchievementController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
         // Cek role pengguna
-        if (Auth::user()->role === 'student') {
+        if (Auth::user()->role === 'mahasiswa') {
             // Jika role student, tampilkan hanya prestasi yang dimiliki oleh student tersebut
-            $achievements = Achievement::where('student_id', Auth::id())->get();
+            $query = Achievement::where('student_id', Auth::id());
             $verifiedCount = Achievement::where('student_id', Auth::id())->where('status', 'diterima')->count();
             $pendingCount = Achievement::where('student_id', Auth::id())->where('status', 'tunda')->count();
             $rejectedCount = Achievement::where('student_id', Auth::id())->where('status', 'ditolak')->count();
         } else {
             // Jika role admin, tampilkan semua prestasi
-            $achievements = Achievement::all();
+            $query = Achievement::query();
             $verifiedCount = Achievement::where('status', 'diterima')->count();
             $pendingCount = Achievement::where('status', 'tunda')->count();
             $rejectedCount = Achievement::where('status', 'ditolak')->count();
         }
-
-        $query = Achievement::query();
 
         if ($request->has('filter')) {
             $filters = $request->filter;
@@ -54,35 +53,25 @@ class AchievementController extends Controller
                 $query->where('achievement_level', '=', $filters['achievement_level']);
             }
 
-
             if (!empty($filters['achievement_title'])) {
                 $query->where('achievement_title', 'like', '%' . $filters['achievement_title'] . '%');
             }
+
             if (!empty($filters['start_year'])) {
                 $query->whereYear('start_date', '=', $filters['start_year']);
             }
-
-            // dd($query->toSql(), $query->getBindings());
-
 
             if (!empty($filters['status'])) {
                 $query->where('status', $filters['status']);
             }
         }
 
-        if (Auth::user()->role === 'student') {
-            $query->where('student_id', Auth::id());
-        }
-
         $achievements = $query->paginate(10);
-
-        $verifiedCount = Achievement::where('status', 'diterima')->count();
-        $pendingCount = Achievement::where('status', 'tunda')->count();
-        $rejectedCount = Achievement::where('status', 'ditolak')->count();
 
         // Kirim semua variabel ke view
         return view('achievement.index', compact('achievements', 'verifiedCount', 'pendingCount', 'rejectedCount'));
     }
+
 
 
     /**
