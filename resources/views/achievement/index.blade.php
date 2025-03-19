@@ -156,7 +156,7 @@
                                                         @csrf
                                                         @method('PATCH')
                                                         @if ($achievement->status === 'diterima')
-                                                            <input type="hidden" name="status" value="pending">
+                                                            <input type="hidden" name="status" value="tunda">
                                                             <button type="submit"
                                                                 class="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded w-full">
                                                                 Tunda
@@ -176,7 +176,7 @@
                                                         method="POST" class="w-full">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <input type="hidden" name="status" value="rejected">
+                                                        <input type="hidden" name="status" value="ditolak">
                                                         <button type="submit"
                                                             class="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded w-full">
                                                             Tolak
