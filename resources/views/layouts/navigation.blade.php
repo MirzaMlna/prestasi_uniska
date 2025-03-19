@@ -80,10 +80,22 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-2 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                Beranda
             </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 space-y-1">
+            <x-responsive-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
+                Data Prestasi
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 space-y-1">
+            @if (Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    Data Akun
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
