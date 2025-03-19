@@ -13,11 +13,11 @@
             @endif
             @if (Auth::user()->role === 'admin')
                 <!-- Form Filter untuk Cetak -->
-                <form action="{{ route('achievements.print') }}" method="GET" class="mb-6">
+                <form action="{{ route('achievements.print') }}" method="GET" class="mb-2">
                     <div class="flex space-x-4">
                         <!-- Filter Program Studi -->
                         <div class="flex-1">
-                            <label for="study_program" class="block text-sm font-medium text-gray-700">Program
+                            <label for="study_program" class="block text-sm font-medium text-white">Program
                                 Studi</label>
                             <input type="text" name="study_program" id="study_program"
                                 value="{{ request('study_program') }}" class="w-full px-2 py-1 border rounded"
@@ -26,7 +26,7 @@
 
                         <!-- Filter Tahun Mulai -->
                         <div class="flex-1">
-                            <label for="start_year" class="block text-sm font-medium text-gray-700">Tahun Mulai</label>
+                            <label for="start_year" class="block text-sm font-medium text-white">Tahun Mulai</label>
                             <input type="number" name="start_year" id="start_year" value="{{ request('start_year') }}"
                                 class="w-full px-2 py-1 border rounded" placeholder="Masukkan Tahun Mulai"
                                 min="2000" max="{{ date('Y') }}">
