@@ -30,6 +30,11 @@ class AchievementController extends Controller
             $rejectedCount = Achievement::where('status', 'ditolak')->count();
         }
 
+        // Filter berdasarkan status jika ada
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        }
+
         if ($request->has('filter')) {
             $filters = $request->filter;
 

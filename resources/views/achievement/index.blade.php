@@ -11,7 +11,7 @@
                     Tambahkan Prestasi
                 </a>
             @endif
-            @if (Auth::user()->role === 'admin')
+            {{-- @if (Auth::user()->role === 'admin')
                 <!-- Form Filter untuk Cetak -->
                 <form action="{{ route('achievements.print') }}" method="GET" class="mb-2">
                     <div class="flex space-x-4">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </form>
-            @endif
+            @endif --}}
         </div>
     </x-slot>
 
@@ -50,32 +50,31 @@
             @if (Auth::user()->role === 'admin')
                 <div class="flex space-x-4 mb-6">
                     <!-- Diverifikasi -->
-                    <div class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <a href="{{ route('achievements.index', ['status' => 'diterima']) }}"
+                        class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:bg-gray-100 dark:hover:bg-gray-700">
                         <div class="text-green-600 text-lg font-semibold">Diverifikasi</div>
                         <div class="text-gray-900 dark:text-gray-100 text-2xl font-bold">{{ $verifiedCount }}</div>
-                    </div>
+                        <div class="text-gray-400 text-xs italic">Klik untuk menampilkan</div>
+                    </a>
 
                     <!-- Pending -->
-                    <div class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <a href="{{ route('achievements.index', ['status' => 'tunda']) }}"
+                        class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:bg-gray-100 dark:hover:bg-gray-700">
                         <div class="text-yellow-400 text-lg font-semibold">Pending</div>
                         <div class="text-gray-900 dark:text-gray-100 text-2xl font-bold">{{ $pendingCount }}</div>
-                    </div>
+                        <div class="text-gray-400 text-xs italic">Klik untuk menampilkan</div>
+                    </a>
 
                     <!-- Ditolak -->
-                    <div class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <a href="{{ route('achievements.index', ['status' => 'ditolak']) }}"
+                        class="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center hover:bg-gray-100 dark:hover:bg-gray-700">
                         <div class="text-red-600 text-lg font-semibold">Ditolak</div>
                         <div class="text-gray-900 dark:text-gray-100 text-2xl font-bold">{{ $rejectedCount }}</div>
-                    </div>
+                        <div class="text-gray-400 text-xs italic">Klik untuk menampilkan</div>
+                    </a>
                 </div>
             @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <!-- Pesan Sukses -->
-                @if (session('success'))
-                    <div class="mb-4 text-green-600">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <!-- Tabel Prestasi -->
                 <div class="overflow-x-auto">
                     <form action="{{ route('achievements.index') }}" method="GET">
@@ -141,14 +140,12 @@
                                         </td>
                                         <td class="border border-gray-300 px-4 py-2">
                                             <div class="flex flex-col space-y-2 w-full">
-                                                <!-- Tombol Selengkapnya -->
                                                 <button onclick="openModal('modal-{{ $achievement->id }}', event)"
                                                     class="bg-blue-700 hover:bg-blue-900 text-white py-1 px-3 rounded w-full">
                                                     Selengkapnya
                                                 </button>
 
                                                 @if (Auth::user()->role === 'admin')
-                                                    <!-- Tombol Verifikasi/Tunda -->
                                                     <form action=""></form>
                                                     <form
                                                         action="{{ route('achievements.updateStatus', $achievement->id) }}"
