@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->string('nim', 50); // NIM mahasiswa
             $table->string('name', 255); // Nama mahasiswa
+            $table->string('phone', 255); // Nomor Telepon mahasiswa
             $table->string('study_program', 255); // Program studi mahasiswa
             $table->enum('achievement_type', ['akademik', 'non akademik']);
             $table->string('achievement_level', 100);

@@ -11,19 +11,20 @@ class Achievement extends Model
         'student_id',
         'nim',
         'name',
+        'phone',
         'study_program',
         'achievement_type',
         'achievement_level',
         'participation_type',
         'execution_model',
         'event_name',
-        'participant_count', // Sesuaikan dengan form
+        'participant_count',
         'achievement_title',
         'start_date',
         'end_date',
         'news_link',
         'certificate_file',
-        'award_photo_file', // Sesuaikan dengan form
+        'award_photo_file',
         'student_assignment_letter',
         'supervisor_assignment_letter',
         'status',
@@ -41,6 +42,7 @@ class Achievement extends Model
                 if ($student) {
                     $achievement->nim = $student->nim;
                     $achievement->name = $student->name;
+                    $achievement->phone = $student->phone;
                     $achievement->study_program = $student->study_program;
                 }
             }
