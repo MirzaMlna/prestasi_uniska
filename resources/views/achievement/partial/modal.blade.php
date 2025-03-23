@@ -20,9 +20,11 @@
                         </p>
                         <p>Tingkat Prestasi: <span class="font-bold">{{ $achievement->achievement_level }}</span></p>
                         <p>Jenis Partisipasi: <span class="font-bold">{{ $achievement->participation_type }}</span></p>
+                        <p>Dikti / Non Dikti: <span class="font-bold">{{ $achievement->program_by }}</span></p>
                         <p>Model Pelaksanaan: <span class="font-bold">{{ $achievement->execution_model }}</span></p>
                         <p>Nama Kegiatan: <span class="font-bold">{{ $achievement->event_name }}</span></p>
                         <p>Jumlah Peserta: <span class="font-bold">{{ $achievement->participant_count }}</span></p>
+                        <p>Jumlah Universitas: <span class="font-bold">{{ $achievement->university_count }}</span></p>
                         <p>Judul Prestasi: <span class="font-bold">{{ $achievement->achievement_title }}</span></p>
                         <p>Tanggal Mulai: <span class="font-bold">{{ $achievement->start_date }}</span></p>
                         <p>Tanggal Selesai: <span class="font-bold">{{ $achievement->end_date }}</span></p>
@@ -59,6 +61,7 @@
                                 <span class="font-bold">-</span>
                             @endif
                         </p>
+                        <p>NDIN Dosen Pembimbing: <span class="font-bold">{{ $achievement->nidn }}</span></p>
                         <p>Surat Tugas Pembimbing: </strong>
                             @if ($achievement->supervisor_assignment_letter)
                                 <a href="{{ asset('storage/' . $achievement->supervisor_assignment_letter) }}"

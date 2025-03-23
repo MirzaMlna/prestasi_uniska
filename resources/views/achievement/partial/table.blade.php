@@ -52,13 +52,12 @@
                     </td>
                     <td class="border border-gray-300 px-4 py-2">
                         <div class="flex flex-col space-y-2 w-full">
-                            @if (Auth::user()->role === 'admin')
-                                <form action=""></form>
-                                <button onclick="openModal('modal-{{ $achievement->id }}', event)"
-                                    class="bg-gray-500 hover:bg-gray-700 text-white py-1 px-3 rounded w-full">
-                                    Tampilkan
-                                </button>
-                            @elseif (Auth::user()->role === 'mahasiswa')
+                            <form action=""></form>
+                            <button onclick="openModal('modal-{{ $achievement->id }}', event)"
+                                class="bg-gray-500 hover:bg-gray-700 text-white py-1 px-3 rounded w-full">
+                                Tampilkan
+                            </button>
+                            @if (Auth::user()->role === 'mahasiswa')
                                 <!-- Tombol Edit -->
                                 <a href="{{ route('achievements.edit', $achievement->id) }}"
                                     class="bg-yellow-500 hover:bg-yellow-700 text-black py-1 px-3 rounded text-center w-full">
