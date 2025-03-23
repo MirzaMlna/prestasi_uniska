@@ -4,8 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <img src="{{ asset('images/uniska_logo.png') }}" alt="uniska_logo" class="w-14 h-14 mx-auto">
+                <div class="shrink-0 flex items-center my-3">
+                    <img src="{{ asset('images/uniska_logo.png') }}" alt="uniska_logo" class="w-8 h-8 mx-auto">
+                    <div class="font-bold mx-3 text-white">UNISKA Achieve</div>
                 </div>
 
                 <!-- Navigation Links -->
