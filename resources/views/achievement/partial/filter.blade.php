@@ -57,11 +57,6 @@
                     Peserta</option>
             </select>
         </td>
-        <td class="border border-gray-300 px-4 py-2 text-gray-800">
-            <input type="number" name="filter[start_year]" value="{{ request('filter.start_year') }}"
-                class="w-full px-2 py-1 border rounded" placeholder="Tahun Mulai" min="2000"
-                max="{{ date('Y') }}">
-        </td>
 
         <td class="border border-gray-300 px-4 py-2 text-gray-800">
             <select name="filter[status]" class="px-2 py-1 pr-8 border rounded appearance-none">

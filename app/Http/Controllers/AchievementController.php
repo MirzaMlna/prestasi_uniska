@@ -62,10 +62,6 @@ class AchievementController extends Controller
                 $query->where('achievement_title', 'like', '%' . $filters['achievement_title'] . '%');
             }
 
-            if (!empty($filters['start_year'])) {
-                $query->whereYear('start_date', '=', $filters['start_year']);
-            }
-
             if (!empty($filters['status'])) {
                 $query->where('status', $filters['status']);
             }
