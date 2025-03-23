@@ -26,8 +26,12 @@
                         <p>Jumlah Peserta: <span class="font-bold">{{ $achievement->participant_count }}</span></p>
                         <p>Jumlah Universitas: <span class="font-bold">{{ $achievement->university_count }}</span></p>
                         <p>Judul Prestasi: <span class="font-bold">{{ $achievement->achievement_title }}</span></p>
-                        <p>Tanggal Mulai: <span class="font-bold">{{ $achievement->start_date }}</span></p>
-                        <p>Tanggal Selesai: <span class="font-bold">{{ $achievement->end_date }}</span></p>
+                        <p>Tanggal Mulai: <span
+                                class="font-bold">{{ \Carbon\Carbon::parse($achievement->start_date)->translatedFormat('j F Y') }}</span>
+                        </p>
+                        <p>Tanggal Selesai: <span
+                                class="font-bold">{{ \Carbon\Carbon::parse($achievement->end_date)->translatedFormat('j F Y') }}</span>
+                        </p>
                         <p>Link Berita: </strong>
                             @if ($achievement->news_link)
                                 <a href="{{ $achievement->news_link }}" target="_blank"
