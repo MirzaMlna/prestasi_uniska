@@ -15,18 +15,10 @@ class AchievementController extends Controller
 
     public function index(Request $request)
     {
-        // Cek role pengguna
         if (Auth::user()->role === 'mahasiswa') {
-            // Jika role student, tampilkan hanya prestasi yang dimiliki oleh student tersebut
             $query = Achievement::where('student_id', Auth::id());
-            $verifiedCount = Achievement::where('student_id', Auth::id())->where('status', 'diterima')->count();
-            $pendingCount = Achievement::where('student_id', Auth::id())->where('status', 'tunda')->count();
-            $rejectedCount = Achievement::where('student_id', Auth::id())->where('status', 'ditolak')->count();
         } else {
-            // Jika role admin, tampilkan semua prestasi yang lengkap (tidak ada field yang kosong)
             $query = Achievement::query();
-
-            // Tambahkan kondisi untuk mengecek field yang wajib diisi
             $query->whereNotNull('achievement_type')
                 ->whereNotNull('achievement_level')
                 ->whereNotNull('participation_type')
@@ -39,70 +31,46 @@ class AchievementController extends Controller
                 ->whereNotNull('start_date')
                 ->whereNotNull('end_date')
                 ->whereNotNull('nidn');
-
-            $verifiedCount = Achievement::where('status', 'diterima')->count();
-            $pendingCount = Achievement::where('status', 'tunda')->count();
-            $rejectedCount = Achievement::where('status', 'ditolak')->count();
         }
-
-        // Filter berdasarkan status jika ada
         if ($request->has('status')) {
             $query->where('status', $request->status);
         }
-
-        // Filter tambahan jika ada
         if ($request->has('filter')) {
             $filters = $request->filter;
-
             if (!empty($filters['nim'])) {
                 $query->where('nim', 'like', '%' . $filters['nim'] . '%');
             }
-
             if (!empty($filters['name'])) {
                 $query->where('name', 'like', '%' . $filters['name'] . '%');
             }
-
             if (!empty($filters['study_program'])) {
                 $query->where('study_program', 'like', '%' . $filters['study_program'] . '%');
             }
-
             if (!empty($filters['achievement_type'])) {
                 $query->where('achievement_type', $filters['achievement_type']);
             }
-
             if (!empty($filters['achievement_level'])) {
                 $query->where('achievement_level', '=', $filters['achievement_level']);
             }
-
             if (!empty($filters['achievement_title'])) {
                 $query->where('achievement_title', 'like', '%' . $filters['achievement_title'] . '%');
             }
-
             if (!empty($filters['status'])) {
                 $query->where('status', $filters['status']);
             }
         }
-
-        // Paginasi hasil query
+        $verifiedCount = (clone $query)->where('status', 'diterima')->count();
+        $pendingCount = (clone $query)->where('status', 'tunda')->count();
+        $rejectedCount = (clone $query)->where('status', 'ditolak')->count();
         $achievements = $query->paginate(10);
-
-        // Kirim semua variabel ke view
         return view('achievement.index', compact('achievements', 'verifiedCount', 'pendingCount', 'rejectedCount'));
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('achievement.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -124,11 +92,7 @@ class AchievementController extends Controller
             'nidn' => 'nullable|string',
             'supervisor_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
         ]);
-
-        // Tambahkan student_id dari user yang login
         $validatedData['student_id'] = auth()->id();
-
-        // Upload file ke storage/app/public/
         if ($request->hasFile('certificate_file')) {
             $validatedData['certificate_file'] = $request->file('certificate_file')->store('certificates', 'public');
         }
@@ -141,37 +105,19 @@ class AchievementController extends Controller
         if ($request->hasFile('supervisor_assignment_letter')) {
             $validatedData['supervisor_assignment_letter'] = $request->file('supervisor_assignment_letter')->store('assignment_letters', 'public');
         }
-
-
-        // Simpan data ke database
         Achievement::create($validatedData);
-
         return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil ditambahkan!');
     }
+    public function show(string $id) {}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $achievement = Achievement::findOrFail($id);
         return view('achievement.edit', compact('achievement'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        // Validasi data
         $validatedData = $request->validate([
             'achievement_type' => 'nullable|string',
             'achievement_level' => 'nullable|string',
@@ -191,13 +137,9 @@ class AchievementController extends Controller
             'nidn' => 'nullable|string',
             'supervisor_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
         ]);
-
-        // Temukan data prestasi yang akan diupdate
         $achievement = Achievement::findOrFail($id);
 
-        // Upload file ke storage/app/public/ jika ada file baru yang diupload
         if ($request->hasFile('certificate_file')) {
-            // Hapus file lama jika ada
             if ($achievement->certificate_file) {
                 Storage::disk('public')->delete($achievement->certificate_file);
             }
@@ -205,7 +147,6 @@ class AchievementController extends Controller
         }
 
         if ($request->hasFile('award_photo_file')) {
-            // Hapus file lama jika ada
             if ($achievement->award_photo_file) {
                 Storage::disk('public')->delete($achievement->award_photo_file);
             }
@@ -213,7 +154,6 @@ class AchievementController extends Controller
         }
 
         if ($request->hasFile('student_assignment_letter')) {
-            // Hapus file lama jika ada
             if ($achievement->student_assignment_letter) {
                 Storage::disk('public')->delete($achievement->student_assignment_letter);
             }
@@ -221,22 +161,14 @@ class AchievementController extends Controller
         }
 
         if ($request->hasFile('supervisor_assignment_letter')) {
-            // Hapus file lama jika ada
             if ($achievement->supervisor_assignment_letter) {
                 Storage::disk('public')->delete($achievement->supervisor_assignment_letter);
             }
             $validatedData['supervisor_assignment_letter'] = $request->file('supervisor_assignment_letter')->store('assignment_letters', 'public');
         }
-
-        // Update data prestasi
         $achievement->update($validatedData);
-
         return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil diperbarui!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Achievement $achievement)
     {
         try {
