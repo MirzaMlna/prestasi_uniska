@@ -15,11 +15,11 @@
                         Beranda
                     </x-nav-link>
                     <x-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
-                        Data Prestasi
+                        Prestasi
                     </x-nav-link>
                     @if (Auth::user()->role === 'admin')
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                            Data Akun
+                            Akun
                         </x-nav-link>
                     @endif
                 </div>
@@ -88,13 +88,13 @@
         </div>
         <div class="pt-2 space-y-1">
             <x-responsive-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
-                Data Prestasi
+                Prestasi
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 space-y-1">
             @if (Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                    Data Akun
+                    Akun
                 </x-responsive-nav-link>
             @endif
         </div>
