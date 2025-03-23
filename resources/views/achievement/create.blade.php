@@ -35,7 +35,7 @@
                             Lomba</label>
                         <select id="achievement_type" name="achievement_type"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                            <option value="">Pilih Jenis Kegiatan</option>
+                            <option value="">Pilih</option>
                             <option value="Akademik">Akademik</option>
                             <option value="Non Akademik">Non Akademik</option>
                         </select>
@@ -47,7 +47,7 @@
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tingkat</label>
                         <select id="achievement_level" name="achievement_level"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                            <option value="">Pilih Tingkatan Kegiatan</option>
+                            <option value="">Pilih</option>
                             <option value="Wilayah">Wilayah</option>
                             <option value="Provinsi">Provinsi</option>
                             <option value="Nasional">Nasional</option>
@@ -62,9 +62,21 @@
                             Kepesertaan</label>
                         <select id="participation_type" name="participation_type"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                            <option value="">Pilih Jenis Kepesertaan</option>
+                            <option value="">Pilih</option>
                             <option value="Individu">Individu</option>
                             <option value="Kelompok">Kelompok</option>
+                        </select>
+                    </div>
+
+                    <!-- Program -->
+                    <div class="mb-4">
+                        <label for="program_by"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Program</label>
+                        <select id="program_by" name="program_by"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            <option value="">Pilih</option>
+                            <option value="Dikti">Dikti</option>
+                            <option value="Non Dikti">Non Dikti</option>
                         </select>
                     </div>
 
@@ -75,7 +87,7 @@
                             Pelaksanaan</label>
                         <select id="execution_model" name="execution_model"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                            <option value="">Pilih Model Pelaksanaan</option>
+                            <option value="">Pilih</option>
                             <option value="Daring">Daring</option>
                             <option value="Luring">Luring</option>
                         </select>
@@ -98,6 +110,20 @@
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 
+                    <!-- Jumlah Universitas -->
+                    <div class="mb-4">
+                        <label for="university_count"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Universitas yang bergabung
+                        </label>
+                        <select id="university_count" name="university_count"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            <option value="">Pilih</option>
+                            <option value="<10">&lt;10</option>
+                            <option value=">=10">≥10</option>
+                        </select>
+                    </div>
+
                     <!-- Capaian Prestasi -->
                     <div class="mb-4">
                         <label for="achievement_title"
@@ -105,7 +131,7 @@
                             Prestasi</label>
                         <select id="achievement_title" name="achievement_title"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                            <option value="">Pilih Capaian Prestasi</option>
+                            <option value="">Pilih</option>
                             <option value="Juara 1">Juara 1</option>
                             <option value="Juara 2">Juara 2</option>
                             <option value="Juara 3">Juara 3</option>
@@ -128,7 +154,8 @@
 
                     <!-- Tanggal Selesai Pelaksanaan -->
                     <div class="mb-4">
-                        <label for="end_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
+                        <label for="end_date"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
                             Selesai
                             Pelaksanaan</label>
                         <input type="date" id="end_date" name="end_date"
@@ -168,6 +195,14 @@
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Surat Tugas
                             Mahasiswa <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
                         <input type="file" id="student_assignment_letter" name="student_assignment_letter"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                    </div>
+
+                    <!-- NIDN -->
+                    <div class="mb-4">
+                        <label for="nidn" class="block text-sm font-medium text-gray-700 dark:text-gray-300">NIDN
+                            Dosen Pembimbing</label>
+                        <input type="number" id="nidn" name="nidn"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 

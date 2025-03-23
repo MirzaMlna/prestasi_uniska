@@ -89,19 +89,22 @@ class AchievementController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'achievement_type' => 'required|string',
-            'achievement_level' => 'required|string',
-            'participation_type' => 'required|string',
-            'execution_model' => 'required|string',
-            'event_name' => 'required|string|max:255',
-            'participant_count' => 'required|integer|min:1',
-            'achievement_title' => 'required|string',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'achievement_type' => 'nullable|string',
+            'achievement_level' => 'nullable|string',
+            'participation_type' => 'nullable|string',
+            'program_by' => 'nullable|string',
+            'execution_model' => 'nullable|string',
+            'event_name' => 'nullable|string|max:255',
+            'participant_count' => 'nullable|integer|min:1',
+            'university_count' => 'nullable|string',
+            'achievement_title' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
             'news_link' => 'nullable|url',
             'certificate_file' => 'nullable|file|mimes:pdf|max:5120',
             'award_photo_file' => 'nullable|file|mimes:pdf|max:5120',
             'student_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
+            'nidn' => 'nullable|string',
             'supervisor_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
         ]);
 
