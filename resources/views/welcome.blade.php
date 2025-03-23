@@ -25,7 +25,8 @@
             <div class="w-full max-w-2xl">
                 <main class="mb-8">
                     <h1 class="text-4xl font-bold">UNISKA Achieve</h1>
-                    <p class="text-md text-gray-600 dark:text-white mb-6 mt-3 text-light">Daripada upload story, mending
+                    <p class="text-md text-gray-400 mb-6 mt-3 text-light">Daripada upload story,
+                        mending
                         upload
                         prestasi!
                     </p>

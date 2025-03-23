@@ -8,10 +8,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="overflow-x-auto">
                     @include('achievement.partial.table')
-                    <div class=" italic text-gray-400 mt-5"> Jika data belum lengkap, simpan dulu dan lengkapi nanti.
-                        Data
-                        tidak
-                        akan dikirim ke Admin sampai semua kolom wajib terisi!</div>
+                    @if (Auth::user()->role === 'mahasiswa')
+                        <div class=" italic text-gray-400 mt-5"> Jika data belum lengkap, simpan dulu dan lengkapi nanti.
+                            Data
+                            tidak
+                            akan dikirim ke Admin sampai semua kolom wajib terisi!</div>
+                    @endif
                     <div class="mt-5">
                         {{ $achievements->links() }}
                     </div>
