@@ -23,8 +23,23 @@ class AchievementController extends Controller
             $pendingCount = Achievement::where('student_id', Auth::id())->where('status', 'tunda')->count();
             $rejectedCount = Achievement::where('student_id', Auth::id())->where('status', 'ditolak')->count();
         } else {
-            // Jika role admin, tampilkan semua prestasi
+            // Jika role admin, tampilkan semua prestasi yang lengkap (tidak ada field yang kosong)
             $query = Achievement::query();
+
+            // Tambahkan kondisi untuk mengecek field yang wajib diisi
+            $query->whereNotNull('achievement_type')
+                ->whereNotNull('achievement_level')
+                ->whereNotNull('participation_type')
+                ->whereNotNull('program_by')
+                ->whereNotNull('execution_model')
+                ->whereNotNull('event_name')
+                ->whereNotNull('participant_count')
+                ->whereNotNull('university_count')
+                ->whereNotNull('achievement_title')
+                ->whereNotNull('start_date')
+                ->whereNotNull('end_date')
+                ->whereNotNull('nidn');
+
             $verifiedCount = Achievement::where('status', 'diterima')->count();
             $pendingCount = Achievement::where('status', 'tunda')->count();
             $rejectedCount = Achievement::where('status', 'ditolak')->count();
@@ -35,6 +50,7 @@ class AchievementController extends Controller
             $query->where('status', $request->status);
         }
 
+        // Filter tambahan jika ada
         if ($request->has('filter')) {
             $filters = $request->filter;
 
@@ -67,6 +83,7 @@ class AchievementController extends Controller
             }
         }
 
+        // Paginasi hasil query
         $achievements = $query->paginate(10);
 
         // Kirim semua variabel ke view
