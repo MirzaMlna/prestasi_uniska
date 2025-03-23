@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center my-3">
                     <img src="{{ asset('images/uniska_logo.png') }}" alt="uniska_logo" class="w-8 h-8 mx-auto">
-                    <div class="font-bold mx-3 text-white">UNISKA Achieve</div>
+                    <div class="font-bold mx-3 text-white">SIMKATMAWA UNISKA</div>
                 </div>
 
                 <!-- Navigation Links -->
