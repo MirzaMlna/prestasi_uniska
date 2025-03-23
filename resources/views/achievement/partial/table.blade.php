@@ -63,9 +63,7 @@
                                     class="bg-yellow-500 hover:bg-yellow-700 text-black py-1 px-3 rounded text-center w-full">
                                     Edit
                                 </a>
-
                                 <!-- Tombol Hapus -->
-                                <form action=""></form>
                                 <form id="delete-form-{{ $achievement->id }}"
                                     action="{{ route('achievements.destroy', $achievement->id) }}" method="POST"
                                     class="w-full">

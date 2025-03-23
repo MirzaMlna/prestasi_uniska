@@ -75,48 +75,52 @@
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
                     <!-- Action Buttons -->
                     <div class="flex justify-between items-center w-full">
-                        <div class="flex space-x-2">
-                            <!-- Tombol Hubungi -->
-                            @php
-                                $phoneNumber = $achievement->phone;
-                                if (substr($phoneNumber, 0, 1) === '0') {
-                                    $phoneNumber = '+62' . substr($phoneNumber, 1);
-                                }
-                            @endphp
-                            <a href="https://wa.me/{{ $phoneNumber }}" target="_blank"
-                                class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
-                                Hubungi
-                            </a>
-                            <!-- Tombol Verifikasi/Tunda -->
-                            <form action="{{ route('achievements.updateStatus', $achievement->id) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                @if ($achievement->status === 'diterima')
-                                    <input type="hidden" name="status" value="tunda">
-                                    <button type="submit"
-                                        class="bg-yellow-500 hover:bg-yellow-700 text-white px-3 rounded">
-                                        Tunda
+                        @if (Auth::user()->role === 'admin')
+                            <div class="flex space-x-2">
+                                <!-- Tombol Hubungi -->
+                                @php
+                                    $phoneNumber = $achievement->phone;
+                                    if (substr($phoneNumber, 0, 1) === '0') {
+                                        $phoneNumber = '+62' . substr($phoneNumber, 1);
+                                    }
+                                @endphp
+                                <a href="https://wa.me/{{ $phoneNumber }}" target="_blank"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
+                                    Hubungi
+                                </a>
+                                <!-- Tombol Verifikasi/Tunda -->
+                                <form action="{{ route('achievements.updateStatus', $achievement->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    @if ($achievement->status === 'diterima')
+                                        <input type="hidden" name="status" value="tunda">
+                                        <button type="submit"
+                                            class="bg-yellow-500 hover:bg-yellow-700 text-white px-3 rounded">
+                                            Tunda
+                                        </button>
+                                    @else
+                                        <input type="hidden" name="status" value="diterima">
+                                        <button type="submit"
+                                            class="bg-green-700 hover:bg-green-900 text-white px-3 rounded">
+                                            Verifikasi
+                                        </button>
+                                    @endif
+                                </form>
+                                <!-- Tombol Tolak -->
+                                <form action="{{ route('achievements.updateStatus', $achievement->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="status" value="ditolak">
+                                    <button type="submit" class="bg-red-700 hover:bg-red-900 text-white px-3 rounded">
+                                        Tolak
                                     </button>
-                                @else
-                                    <input type="hidden" name="status" value="diterima">
-                                    <button type="submit"
-                                        class="bg-green-700 hover:bg-green-900 text-white px-3 rounded">
-                                        Verifikasi
-                                    </button>
-                                @endif
-                            </form>
-                            <!-- Tombol Tolak -->
-                            <form action="{{ route('achievements.updateStatus', $achievement->id) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <input type="hidden" name="status" value="ditolak">
-                                <button type="submit" class="bg-red-700 hover:bg-red-900 text-white px-3 rounded">
-                                    Tolak
-                                </button>
-                            </form>
+                                </form>
 
 
-                        </div>
+                            </div>
+                        @endif
 
                         <!-- Tombol di Kanan (Tutup) -->
                         <button type="button" onclick="closeModal('modal-{{ $achievement->id }}')"

@@ -145,15 +145,76 @@ class AchievementController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $achievement = Achievement::findOrFail($id);
+        return view('achievement.edit', compact('achievement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validasi data
+        $validatedData = $request->validate([
+            'achievement_type' => 'nullable|string',
+            'achievement_level' => 'nullable|string',
+            'participation_type' => 'nullable|string',
+            'program_by' => 'nullable|string',
+            'execution_model' => 'nullable|string',
+            'event_name' => 'nullable|string|max:255',
+            'participant_count' => 'nullable|integer|min:1',
+            'university_count' => 'nullable|string',
+            'achievement_title' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'news_link' => 'nullable|url',
+            'certificate_file' => 'nullable|file|mimes:pdf|max:5120',
+            'award_photo_file' => 'nullable|file|mimes:pdf|max:5120',
+            'student_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
+            'nidn' => 'nullable|string',
+            'supervisor_assignment_letter' => 'nullable|file|mimes:pdf|max:5120',
+        ]);
+
+        // Temukan data prestasi yang akan diupdate
+        $achievement = Achievement::findOrFail($id);
+
+        // Upload file ke storage/app/public/ jika ada file baru yang diupload
+        if ($request->hasFile('certificate_file')) {
+            // Hapus file lama jika ada
+            if ($achievement->certificate_file) {
+                Storage::disk('public')->delete($achievement->certificate_file);
+            }
+            $validatedData['certificate_file'] = $request->file('certificate_file')->store('certificates', 'public');
+        }
+
+        if ($request->hasFile('award_photo_file')) {
+            // Hapus file lama jika ada
+            if ($achievement->award_photo_file) {
+                Storage::disk('public')->delete($achievement->award_photo_file);
+            }
+            $validatedData['award_photo_file'] = $request->file('award_photo_file')->store('awards', 'public');
+        }
+
+        if ($request->hasFile('student_assignment_letter')) {
+            // Hapus file lama jika ada
+            if ($achievement->student_assignment_letter) {
+                Storage::disk('public')->delete($achievement->student_assignment_letter);
+            }
+            $validatedData['student_assignment_letter'] = $request->file('student_assignment_letter')->store('assignment_letters', 'public');
+        }
+
+        if ($request->hasFile('supervisor_assignment_letter')) {
+            // Hapus file lama jika ada
+            if ($achievement->supervisor_assignment_letter) {
+                Storage::disk('public')->delete($achievement->supervisor_assignment_letter);
+            }
+            $validatedData['supervisor_assignment_letter'] = $request->file('supervisor_assignment_letter')->store('assignment_letters', 'public');
+        }
+
+        // Update data prestasi
+        $achievement->update($validatedData);
+
+        return redirect()->route('achievements.index')->with('success', 'Prestasi berhasil diperbarui!');
     }
 
     /**
