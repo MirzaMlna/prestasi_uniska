@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Admin User',
+                'name' => 'Muhammad Mirza Maulana',
                 'password' => Hash::make('password'),
                 'nim' => '2210010156',
-                'study_program' => 'Kemahasiswaan',
+                'study_program' => 'Teknik Informatika',
                 'phone' => '085814313224',
                 'role' => 'admin',
                 'is_approved' => true,
@@ -28,33 +28,33 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
-        DB::table('users')->insert([
-            [
-                'name' => 'Student User 1',
-                'password' => Hash::make('password'),
-                'nim' => '2210010155',
-                'study_program' => 'Kemahasiswaan',
-                'phone' => '085814313224',
-                'role' => 'mahasiswa',
-                'is_approved' => true,
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
-        DB::table('users')->insert([
-            [
-                'name' => 'Student User 2',
-                'password' => Hash::make('password'),
-                'nim' => '2210010154',
-                'study_program' => 'Kemahasiswaan',
-                'phone' => '085814313224',
-                'role' => 'mahasiswa',
-                'is_approved' => true,
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('users')->insert([
+        //     [
+        //         'name' => 'Student User 1',
+        //         'password' => Hash::make('password'),
+        //         'nim' => '2210010155',
+        //         'study_program' => 'Kemahasiswaan',
+        //         'phone' => '085814313224',
+        //         'role' => 'mahasiswa',
+        //         'is_approved' => true,
+        //         'remember_token' => Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
+        // DB::table('users')->insert([
+        //     [
+        //         'name' => 'Student User 2',
+        //         'password' => Hash::make('password'),
+        //         'nim' => '2210010154',
+        //         'study_program' => 'Kemahasiswaan',
+        //         'phone' => '085814313224',
+        //         'role' => 'mahasiswa',
+        //         'is_approved' => true,
+        //         'remember_token' => Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
     }
 }
