@@ -92,6 +92,7 @@
                                         <p class="text-sm text-gray-600 dark:text-gray-400">Berkas yang diperlukan
                                             sebagai berikut:</p>
                                         <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400">
+                                            <li>Link berita (Link)</li>
                                             <li>Sertifikat (PDF, Maksimal 5MB)</li>
                                             <li>Foto penyerahan penghargaan (PDF, Maksimal 5MB)</li>
                                             <li>Surat tugas mahasiswa (PDF, Maksimal 5MB)</li>
