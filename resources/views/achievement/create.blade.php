@@ -120,8 +120,8 @@
                         <select id="university_count" name="university_count"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                             <option value="">Pilih</option>
-                            <option value="<10">&lt;10</option>
-                            <option value=">=10">≥10</option>
+                            <option value="<10">Kurang dari 10</option>
+                            <option value=">=10">Lebih dari 10</option>
                         </select>
                     </div>
 
@@ -176,7 +176,7 @@
                         <label for="certificate_file"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sertifikat
                             <span class="text-gray-500">.pdf</span></label>
-                        <input type="file" id="certificate_file" name="certificate_file"
+                        <input type="file" accept=".pdf" id="certificate_file" name="certificate_file"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 
@@ -186,7 +186,7 @@
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Foto
                             Penyerahan
                             Penghargaan <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="award_photo_file" name="award_photo_file"
+                        <input type="file" accept=".pdf" id="award_photo_file" name="award_photo_file"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 
@@ -195,7 +195,8 @@
                         <label for="student_assignment_letter"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Surat Tugas
                             Mahasiswa <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="student_assignment_letter" name="student_assignment_letter"
+                        <input type="file" accept=".pdf" id="student_assignment_letter"
+                            name="student_assignment_letter"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 
@@ -212,7 +213,8 @@
                         <label for="supervisor_assignment_letter"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">Surat Tugas
                             Dosen Pembimbing <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="supervisor_assignment_letter" name="supervisor_assignment_letter"
+                        <input type="file" accept=".pdf" id="supervisor_assignment_letter"
+                            name="supervisor_assignment_letter"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     </div>
 
