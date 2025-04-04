@@ -7,10 +7,14 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class AchievementExport implements FromCollection, WithHeadings, WithMapping, WithStyles
+class AchievementExport implements FromCollection, WithHeadings, WithMapping, WithStyles, ShouldAutoSize
 {
+    private $index = 1;
+
     public function collection()
     {
         return Achievement::all();
@@ -19,6 +23,7 @@ class AchievementExport implements FromCollection, WithHeadings, WithMapping, Wi
     public function headings(): array
     {
         return [
+            'No',
             'NIM',
             'Nama',
             'No. HP',
@@ -47,6 +52,7 @@ class AchievementExport implements FromCollection, WithHeadings, WithMapping, Wi
     public function map($a): array
     {
         return [
+            $this->index++,
             $a->nim,
             $a->name,
             $a->phone,
@@ -74,8 +80,32 @@ class AchievementExport implements FromCollection, WithHeadings, WithMapping, Wi
 
     public function styles(Worksheet $sheet)
     {
-        return [
-            1 => ['font' => ['bold' => true]], // Baris pertama (heading) dibuat bold
-        ];
+        $dataCount = Achievement::count() + 1; // +1 untuk heading
+        $range = "A1:W{$dataCount}";
+
+        // Apply border ke seluruh cell
+        $sheet->getStyle($range)->applyFromArray([
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ],
+            ],
+        ]);
+
+        // Style heading
+        $sheet->getStyle('A1:W1')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'size' => 12,
+                'color' => ['rgb' => 'FFFFFF'],
+            ],
+            'fill' => [
+                'fillType' => 'solid',
+                'startColor' => ['rgb' => '4A5568'],
+            ],
+        ]);
+
+        return [];
     }
 }
