@@ -57,7 +57,7 @@
                                 class="bg-gray-500 hover:bg-gray-700 text-white py-1 px-3 rounded w-full">
                                 Tampilkan
                             </button>
-                            @if (Auth::user()->role === 'mahasiswa')
+                            @if (Auth::user()->role === 'mahasiswa' && $achievement->status !== 'diterima')
                                 <!-- Tombol Edit -->
                                 <a href="{{ route('achievements.edit', $achievement->id) }}"
                                     class="bg-yellow-500 hover:bg-yellow-700 text-black py-1 px-3 rounded text-center w-full">
