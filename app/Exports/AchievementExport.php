@@ -80,10 +80,9 @@ class AchievementExport implements FromCollection, WithHeadings, WithMapping, Wi
 
     public function styles(Worksheet $sheet)
     {
-        $dataCount = Achievement::count() + 1; // +1 untuk heading
+        $dataCount = Achievement::count() + 1;
         $range = "A1:W{$dataCount}";
 
-        // Apply border ke seluruh cell
         $sheet->getStyle($range)->applyFromArray([
             'borders' => [
                 'allBorders' => [
@@ -92,8 +91,6 @@ class AchievementExport implements FromCollection, WithHeadings, WithMapping, Wi
                 ],
             ],
         ]);
-
-        // Style heading
         $sheet->getStyle('A1:W1')->applyFromArray([
             'font' => [
                 'bold' => true,
