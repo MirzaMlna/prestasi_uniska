@@ -18,7 +18,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-100  text-gray-900 flex flex-col min-h-screen">
     <div class="flex-grow flex items-center justify-center">
         <div class="w-full max-w-4xl flex flex-col items-center text-center space-y-4">
             <img src="{{ asset('images/uniska_logo.png') }}" alt="uniska_logo" class="w-32 h-32">
@@ -36,12 +36,12 @@
                                 </a>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="px-5 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition-all ">
+                                    class="px-5 py-2 bg-gray-800 text-white rounded-md shadow-md hover:bg-gray-700 transition-all ">
                                     Masuk
                                 </a>
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                        class="px-5 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
+                                        class="px-5 py-2 border border-gray-300 rounded-md hover:bg-gray-200 transition-all">
                                         Registrasi
                                     </a>
                                 @endif

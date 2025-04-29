@@ -2,11 +2,11 @@
 
     @include('achievement.partial.header')
 
-    <div class="py-6">
+    <div class="py-6 pl-0 xl:pl-64">
 
         <div class="mx-auto sm:px-6 lg:px-8">
             @include('achievement.partial.card')
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="overflow-x-auto">
 
                     {{-- Tombol Export --}}
@@ -22,7 +22,7 @@
                     @include('achievement.partial.table')
 
                     @if (Auth::user()->role === 'mahasiswa')
-                        <div class=" italic text-gray-400 mt-5"> Jika data belum lengkap, simpan dulu dan lengkapi
+                        <div class="italic text-gray-400 mt-5"> Jika data belum lengkap, simpan dulu dan lengkapi
                             nanti.
                             Data
                             tidak

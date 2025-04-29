@@ -1,16 +1,16 @@
 <form action="{{ route('achievements.index') }}" method="GET">
-    <table class="w-full border-collapse border border-gray-300 dark:border-gray-700">
-        <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white">
+    <table class="w-full border-collapse border border-gray-300">
+        <thead class="bg-gray-100 text-gray-700">
             <tr>
-                <th class="border px-4 py-2">No</th>
-                <th class="border px-4 py-2">NIM</th>
-                <th class="border px-4 py-2">Nama</th>
-                <th class="border px-4 py-2">Program Studi</th>
-                <th class="border px-4 py-2">Jenis Prestasi</th>
-                <th class="border px-4 py-2">Tingkat Prestasi</th>
-                <th class="border px-4 py-2">Capaian Prestasi</th>
-                <th class="border px-4 py-2">Status</th>
-                <th class="border px-4 py-2">Aksi</th>
+                <th class="border border-gray-300 px-4 py-2">No</th>
+                <th class="border border-gray-300 px-4 py-2">NIM</th>
+                <th class="border border-gray-300 px-4 py-2">Nama</th>
+                <th class="border border-gray-300 px-4 py-2">Program Studi</th>
+                <th class="border border-gray-300 px-4 py-2">Jenis Prestasi</th>
+                <th class="border border-gray-300 px-4 py-2">Tingkat Prestasi</th>
+                <th class="border border-gray-300 px-4 py-2">Capaian Prestasi</th>
+                <th class="border border-gray-300 px-4 py-2">Status</th>
+                <th class="border border-gray-300 px-4 py-2">Aksi</th>
             </tr>
 
             @include('achievement.partial.filter')
@@ -18,20 +18,14 @@
         </thead>
         <tbody>
             @forelse ($achievements as $key => $achievement)
-                <tr class="text-gray-900 dark:text-gray-100">
+                <tr class="text-gray-900">
                     <td class="border border-gray-300 px-4 py-2">{{ $loop->iteration }}</td>
                     <td class="border border-gray-300 px-4 py-2">{{ $achievement->nim }}</td>
                     <td class="border border-gray-300 px-4 py-2">{{ $achievement->name }}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{ $achievement->study_program }}
-                    </td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        {{ ucfirst($achievement->achievement_type) }}</td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        {{ $achievement->achievement_level }}
-                    </td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        {{ $achievement->achievement_title }}
-                    </td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $achievement->study_program }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ ucfirst($achievement->achievement_type) }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $achievement->achievement_level }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $achievement->achievement_title }}</td>
                     <td class="border border-gray-300 px-4 py-2">
                         @switch($achievement->status)
                             @case('tunda')
@@ -83,8 +77,7 @@
 
                 @empty
                     <tr>
-                        <td colspan="10"
-                            class="border border-gray-300 px-4 py-2 text-center text-gray-500 dark:text-gray-400">
+                        <td colspan="10" class="border border-gray-300 px-4 py-2 text-center text-gray-500">
                             Tidak ada prestasi yang ditemukan.
                         </td>
                     </tr>

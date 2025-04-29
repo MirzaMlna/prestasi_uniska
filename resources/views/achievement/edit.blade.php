@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Data Prestasi') }}
         </h2>
     </x-slot>
@@ -26,7 +26,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- Form Edit Prestasi --}}
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <form action="{{ route('achievements.update', $achievement->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -34,11 +34,10 @@
 
                     <!-- Jenis Lomba -->
                     <div class="mb-4">
-                        <label for="achievement_type"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Jenis
+                        <label for="achievement_type" class="block text-sm font-medium text-gray-700">Jenis
                             Lomba</label>
                         <select id="achievement_type" name="achievement_type"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Akademik"
                                 {{ $achievement->achievement_type == 'Akademik' ? 'selected' : '' }}>Akademik</option>
@@ -50,10 +49,9 @@
 
                     <!-- Tingkat -->
                     <div class="mb-4">
-                        <label for="achievement_level"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tingkat</label>
+                        <label for="achievement_level" class="block text-sm font-medium text-gray-700">Tingkat</label>
                         <select id="achievement_level" name="achievement_level"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Wilayah"
                                 {{ $achievement->achievement_level == 'Wilayah' ? 'selected' : '' }}>Wilayah</option>
@@ -69,11 +67,10 @@
 
                     <!-- Jenis Kepesertaan -->
                     <div class="mb-4">
-                        <label for="participation_type"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Jenis
+                        <label for="participation_type" class="block text-sm font-medium text-gray-700">Jenis
                             Kepesertaan</label>
                         <select id="participation_type" name="participation_type"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Individu"
                                 {{ $achievement->participation_type == 'Individu' ? 'selected' : '' }}>Individu</option>
@@ -85,10 +82,9 @@
 
                     <!-- Program -->
                     <div class="mb-4">
-                        <label for="program_by"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Program</label>
+                        <label for="program_by" class="block text-sm font-medium text-gray-700">Program</label>
                         <select id="program_by" name="program_by"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Dikti" {{ $achievement->program_by == 'Dikti' ? 'selected' : '' }}>Dikti
                             </option>
@@ -99,11 +95,10 @@
 
                     <!-- Model Pelaksanaan -->
                     <div class="mb-4">
-                        <label for="execution_model"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Model
+                        <label for="execution_model" class="block text-sm font-medium text-gray-700">Model
                             Pelaksanaan</label>
                         <select id="execution_model" name="execution_model"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Daring" {{ $achievement->execution_model == 'Daring' ? 'selected' : '' }}>
                                 Daring</option>
@@ -114,30 +109,26 @@
 
                     <!-- Nama Kegiatan -->
                     <div class="mb-4">
-                        <label for="event_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nama
-                            Kegiatan</label>
+                        <label for="event_name" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
                         <input type="text" id="event_name" name="event_name" value="{{ $achievement->event_name }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <!-- Jumlah Peserta -->
                     <div class="mb-4">
-                        <label for="participant_count"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Jumlah
+                        <label for="participant_count" class="block text-sm font-medium text-gray-700">Jumlah
                             Peserta</label>
                         <input type="number" id="participant_count" name="participant_count"
                             value="{{ $achievement->participant_count }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <!-- Jumlah Universitas -->
                     <div class="mb-4">
-                        <label for="university_count"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Universitas yang bergabung
-                        </label>
+                        <label for="university_count" class="block text-sm font-medium text-gray-700">Universitas yang
+                            bergabung</label>
                         <select id="university_count" name="university_count"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="<10" {{ $achievement->university_count == '<10' ? 'selected' : '' }}>
                                 &lt;10</option>
@@ -148,11 +139,10 @@
 
                     <!-- Capaian Prestasi -->
                     <div class="mb-4">
-                        <label for="achievement_title"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Capaian
+                        <label for="achievement_title" class="block text-sm font-medium text-gray-700">Capaian
                             Prestasi</label>
                         <select id="achievement_title" name="achievement_title"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">Pilih</option>
                             <option value="Juara 1"
                                 {{ $achievement->achievement_title == 'Juara 1' ? 'selected' : '' }}>Juara 1</option>
@@ -176,100 +166,50 @@
 
                     <!-- Tanggal Mulai Pelaksanaan -->
                     <div class="mb-4">
-                        <label for="start_date"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
-                            Mulai
+                        <label for="start_date" class="block text-sm font-medium text-gray-700">Tanggal Mulai
                             Pelaksanaan</label>
                         <input type="date" id="start_date" name="start_date"
                             value="{{ $achievement->start_date }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <!-- Tanggal Selesai Pelaksanaan -->
                     <div class="mb-4">
-                        <label for="end_date"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
-                            Selesai
+                        <label for="end_date" class="block text-sm font-medium text-gray-700">Tanggal Selesai
                             Pelaksanaan</label>
                         <input type="date" id="end_date" name="end_date" value="{{ $achievement->end_date }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <!-- Link Berita -->
                     <div class="mb-4">
-                        <label for="news_link" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Link
-                            Berita</label>
+                        <label for="news_link" class="block text-sm font-medium text-gray-700">Link Berita</label>
                         <input type="url" id="news_link" name="news_link" value="{{ $achievement->news_link }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
-                    <!-- Sertifikat (Upload) -->
+                    <!-- Foto -->
+                    <div class="mb-4">
+                        <label for="achievement_photo" class="block text-sm font-medium text-gray-700">Foto
+                            Kegiatan</label>
+                        <input type="file" id="achievement_photo" name="achievement_photo"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <!-- File Sertifikat -->
                     <div class="mb-4">
                         <label for="certificate_file"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sertifikat
-                            <span class="text-gray-500">.pdf</span></label>
+                            class="block text-sm font-medium text-gray-700">Sertifikat</label>
                         <input type="file" id="certificate_file" name="certificate_file"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                        @if ($achievement->certificate_file)
-                            <a href="{{ asset('storage/' . $achievement->certificate_file) }}" target="_blank"
-                                class="text-blue-500">Lihat Sertifikat</a>
-                        @endif
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
-                    <!-- Foto Penyerahan Penghargaan (Upload) -->
+                    <!-- Submit Button -->
                     <div class="mb-4">
-                        <label for="award_photo_file"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Foto
-                            Penyerahan
-                            Penghargaan <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="award_photo_file" name="award_photo_file"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                        @if ($achievement->award_photo_file)
-                            <a href="{{ asset('storage/' . $achievement->award_photo_file) }}" target="_blank"
-                                class="text-blue-500">Lihat Foto</a>
-                        @endif
-                    </div>
-
-                    <!-- Surat Tugas Mahasiswa (Upload) -->
-                    <div class="mb-4">
-                        <label for="student_assignment_letter"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Surat Tugas
-                            Mahasiswa <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="student_assignment_letter" name="student_assignment_letter"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                        @if ($achievement->student_assignment_letter)
-                            <a href="{{ asset('storage/' . $achievement->student_assignment_letter) }}"
-                                target="_blank" class="text-blue-500">Lihat Surat Tugas</a>
-                        @endif
-                    </div>
-
-                    <!-- NIDN -->
-                    <div class="mb-4">
-                        <label for="nidn" class="block text-sm font-medium text-gray-700 dark:text-gray-300">NIDN
-                            Dosen Pembimbing</label>
-                        <input type="number" id="nidn" name="nidn" value="{{ $achievement->nidn }}"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                    </div>
-
-                    <!-- Surat Tugas Dospem (Upload) -->
-                    <div class="mb-4">
-                        <label for="supervisor_assignment_letter"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">Surat Tugas
-                            Dosen Pembimbing <span class="text-gray-500">.pdf (Maksimal 5 mb)</span></label>
-                        <input type="file" id="supervisor_assignment_letter" name="supervisor_assignment_letter"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-                        @if ($achievement->supervisor_assignment_letter)
-                            <a href="{{ asset('storage/' . $achievement->supervisor_assignment_letter) }}"
-                                target="_blank" class="text-blue-500">Lihat Surat Tugas</a>
-                        @endif
-                    </div>
-
-                    <!-- Tombol Submit -->
-                    <div class="flex justify-end">
                         <button type="submit"
-                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Simpan
-                            Perubahan</button>
+                            class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-700">Simpan</button>
                     </div>
+
                 </form>
             </div>
         </div>

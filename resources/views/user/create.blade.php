@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <div class="text-center text-gray-900 dark:text-white mb-5">
+    <div class="text-center text-gray-900 mb-5">
         <p class="text-xl mt-6">Silahkan isi data di bawah <span class="font-bold">Untuk Menambahkan Admin</span></p>
     </div>
 
@@ -24,7 +24,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Name -->
+        <!-- Phone -->
         <div class="mt-4">
             <x-input-label for="phone" :value="__('No. Telepon')" />
             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
@@ -35,27 +35,23 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
-
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="flex items-center mt-4">
-            < <x-primary-button class="ms-auto">
+            <x-primary-button class="ms-auto">
                 {{ __('Buat Akun') }}
-                </x-primary-button>
+            </x-primary-button>
         </div>
 
     </form>
