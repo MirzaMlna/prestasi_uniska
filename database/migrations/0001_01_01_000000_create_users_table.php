@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('study_program');
             $table->string('phone');
             $table->string('password');
-            $table->enum('role', ['admin', 'mahasiswa'])->default('mahasiswa');
+            $table->enum('role', ['Super Admin', 'Admin Kemahasiswaan', 'Admin Fakultas', 'Mahasiswa'])->default('Mahasiswa');
             $table->boolean('is_approved')->default(false);
             $table->rememberToken();
             $table->timestamps();

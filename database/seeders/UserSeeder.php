@@ -16,45 +16,62 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Muhammad Mirza Maulana',
+                'name' => 'Super Admin',
                 'password' => Hash::make('password'),
                 'nim' => '2210010156',
                 'study_program' => 'Teknik Informatika',
                 'phone' => '085814313224',
-                'role' => 'admin',
+                'role' => 'Super Admin',
                 'is_approved' => true,
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ]);
-        // DB::table('users')->insert([
-        //     [
-        //         'name' => 'Student User 1',
-        //         'password' => Hash::make('password'),
-        //         'nim' => '2210010155',
-        //         'study_program' => 'Kemahasiswaan',
-        //         'phone' => '085814313224',
-        //         'role' => 'mahasiswa',
-        //         'is_approved' => true,
-        //         'remember_token' => Str::random(10),
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        // ]);
-        // DB::table('users')->insert([
-        //     [
-        //         'name' => 'Student User 2',
-        //         'password' => Hash::make('password'),
-        //         'nim' => '2210010154',
-        //         'study_program' => 'Kemahasiswaan',
-        //         'phone' => '085814313224',
-        //         'role' => 'mahasiswa',
-        //         'is_approved' => true,
-        //         'remember_token' => Str::random(10),
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        // ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Admin Kemahasiswaan',
+                'password' => Hash::make('password'),
+                'nim' => '2210010157',
+                'study_program' => 'Teknik Informatika',
+                'phone' => '085814313224',
+                'role' => 'Admin Kemahasiswaan',
+                'is_approved' => true,
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Admin Fakultas',
+                'password' => Hash::make('password'),
+                'nim' => '2210010158',
+                'study_program' => 'Teknik Informatika',
+                'phone' => '085814313224',
+                'role' => 'Admin Fakultas',
+                'is_approved' => true,
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Mahasiswa',
+                'password' => Hash::make('password'),
+                'nim' => '2210010159',
+                'study_program' => 'Teknik Informatika',
+                'phone' => '085814313224',
+                'role' => 'Mahasiswa',
+                'is_approved' => true,
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }
