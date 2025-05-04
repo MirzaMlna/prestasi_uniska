@@ -32,6 +32,7 @@ class DashboardController extends Controller
         $pendingCount = (clone $query)->where('status', 'tunda')->count();
         $rejectedCount = (clone $query)->where('status', 'ditolak')->count();
 
+        // Kirim data ke view
         return view('dashboard', compact('user', 'verifiedCount', 'pendingCount', 'rejectedCount'));
     }
 }
