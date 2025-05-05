@@ -31,7 +31,7 @@
             </div>
 
             <!-- Header (Desktop) -->
-            <h2 class="text-xl font-semibold mb-6 hidden sm:block">SIMKATMAWA UNISKA</h2>
+            <h2 class="text-xl font-semibold mb-6 hidden sm:block my-2">SIMKATMAWA UNISKA</h2>
 
             <!-- Menu -->
             <nav class="space-y-2">
