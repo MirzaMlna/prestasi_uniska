@@ -11,7 +11,6 @@
 
     <form method="POST" action="{{ route('register') }}" class="space-y-6">
         @csrf
-
         <!-- NIM -->
         <div>
             <x-input-label for="nim" :value="__('NIM')" class="text-gray-700 mb-1" />

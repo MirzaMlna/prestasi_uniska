@@ -17,6 +17,14 @@
                         </a>
                     </div>
                 @endif
+                @if (Auth::user()->role === 'mahasiswa')
+                    <div class="mb-4">
+                        <a href="{{ route('achievements.create') }}"
+                            class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded shadow">
+                            Tambahkan Prestasi
+                        </a>
+                    </div>
+                @endif
 
                 @include('achievement.partial.table')
 

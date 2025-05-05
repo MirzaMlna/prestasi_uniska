@@ -75,9 +75,11 @@
                 <a href="{{ route('achievements.index') }}" class="block px-4 py-2 rounded hover:bg-gray-200"><i
                         class="bi bi-award">
                     </i> Prestasi</a>
-                <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded hover:bg-gray-200"><i
-                        class="bi bi-people">
-                    </i> Pengguna</a>
+                @if (Auth::user()->role === 'admin')
+                    <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded hover:bg-gray-200"><i
+                            class="bi bi-people">
+                        </i> Pengguna</a>
+                @endif
             </nav>
         </div>
     </aside>
